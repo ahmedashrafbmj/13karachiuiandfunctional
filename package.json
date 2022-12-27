@@ -1,54 +1,23 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "private": true,
-  "proxy": "http://localhost:9000",
-  "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
-    "@material-ui/core": "^4.12.3",
-    "@mui/icons-material": "^5.4.2",
-    "@mui/material": "^5.4.3",
-    "@reduxjs/toolkit": "^1.8.5",
-    "@testing-library/jest-dom": "^5.16.2",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
-    "bootstrap": "^4.6.0",
-    "firebase": "^8.8.1",
-    "react": "^17.0.2",
-    "react-bootstrap": "^2.7.0",
-    "react-circular-progressbar": "^2.1.0",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.6.0",
-    "react-redux": "^8.0.2",
-    "react-router-dom": "^5.3.0",
-    "react-scripts": "5.0.0",
-    "react-toastify": "^9.1.1",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "mongodbconn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "node server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.17.3",
+    "mongoose": "^6.2.11",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.15"
   }
 }
