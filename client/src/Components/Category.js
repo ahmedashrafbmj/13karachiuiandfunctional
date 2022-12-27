@@ -30,7 +30,7 @@ const addPost=()=>{
     else{
 
         const headers = { "Content-Type": "application/json" };
-        axios.post(`/api/allpostcategory`,{
+        axios.post(`https://13k.up.railway.app/api/allpostcategory`,{
             categoryName:categoryDetail.categoryName,
             imageURL:categoryDetail.imageURL,
             userEmail: localStorage.getItem('user'),

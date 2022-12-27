@@ -33,7 +33,7 @@ const [roleau, setroleau] = useState ('');
 
         const fetchMarkets = async () => {
             setLoading(true)
-            const res = await fetch(`/api/getareaname/${areaName}`);
+            const res = await fetch(`https://13k.up.railway.app/api/getareaname/${areaName}`);
 
             const data = await res.json();
             console.log(data);

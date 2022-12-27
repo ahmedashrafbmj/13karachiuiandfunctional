@@ -30,7 +30,7 @@ const { id } = useParams("");
 
     const getdata = async () => {
 
-        const res = await fetch(`/api/catid/${id}`, {
+        const res = await fetch(`https://13k.up.railway.app/api/catid/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -78,7 +78,7 @@ const updatePost=()=>{
     
 
         const headers = { "Content-Type": "application/json" };
-        axios.patch(`/api/catupdate/${id}`,{
+        axios.patch(`https://13k.up.railway.app/api/catupdate/${id}`,{
             categoryName:productDetail.categoryName,
             imageURL:productDetail.imageURL,
 

@@ -26,13 +26,13 @@ const Welcome2=(props)=>{
 const getdata = async () => {
 
     const findEmail2 = localStorage.getItem('user'); 
-    // http://localhost:4000/api/allpostdata
+    // http://localhost:4000https://13k.up.railway.app/api/allpostdata
 
-    // `http://localhost:4000/api/postbyemail/${useremail}`
+    // `http://localhost:4000https://13k.up.railway.app/api/postbyemail/${useremail}`
 
-    // /api/allpostdata
+    // https://13k.up.railway.app/api/allpostdata
 
-    const res = await fetch(`/api/allpostdata`, {
+    const res = await fetch(`https://13k.up.railway.app/api/allpostdata`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -48,13 +48,13 @@ const getdata = async () => {
 
 
 const gethotelname = async () => {
-    // http://localhost:4000/api/allpostdata
+    // http://localhost:4000https://13k.up.railway.app/api/allpostdata
 
-    // `http://localhost:4000/api/postbyemail/${useremail}`
+    // `http://localhost:4000https://13k.up.railway.app/api/postbyemail/${useremail}`
     const findEmail = localStorage.getItem('user'); 
     console.log(findEmail)
 
-    const res3 = await fetch(`/api/postbyemailsignup/${findEmail}`,{
+    const res3 = await fetch(`https://13k.up.railway.app/api/postbyemailsignup/${findEmail}`,{
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -125,9 +125,9 @@ useEffect(() => {
 ///delelte single data
 
 const deletedata = async (id) => {
-    // http://localhost:4000/api/allpostdata
+    // http://localhost:4000https://13k.up.railway.app/api/allpostdata
 
-    const res2 = await fetch(`/api/deletepost/${id}`, {
+    const res2 = await fetch(`https://13k.up.railway.app/api/deletepost/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

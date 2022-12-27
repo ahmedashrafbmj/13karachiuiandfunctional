@@ -23,7 +23,7 @@ const history = useHistory()
         const userEmail = localStorage.getItem('user');
 
         const fetchDetails= async () => {
-            const res = await fetch(`/api/postbyemailsignup/${userEmail}`);
+            const res = await fetch(`https://13k.up.railway.app/api/postbyemailsignup/${userEmail}`);
             const data = await res.json();
             console.log(data);
             setHotel(data);

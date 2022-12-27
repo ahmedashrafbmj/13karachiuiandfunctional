@@ -12,8 +12,8 @@ import './Components/Welcome/Welcome.css'
 import './Components/Login/Login.css'
 import Router from './Components/Router';
 import Register from './Components/Register/Register';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'react-toastify/dist/ReactToastify.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-toastify/dist/ReactToastify.css';
 import store from './store/store';
 
 
@@ -29,6 +29,7 @@ return(
 <>
 
 
+<br />
 <Provider store={store}>
 <BrowserRouter>
 

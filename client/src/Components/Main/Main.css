@@ -11,7 +11,68 @@
  
 }
 
+:where(.css-dev-only-do-not-override-9ntgx0).ant-drawer .ant-drawer-title {
+    flex: 1;
+    margin: 0;
+    color: rgba(0, 0, 0, 0.88);
+    font-weight: 600;
+    font-size: 29px;
+    line-height: 1.5;
+    font-family: cursive;
+}
+:where(.css-dev-only-do-not-override-9ntgx0).ant-drawer .ant-drawer-body {
+    flex: 1;
+    min-width: 0;
+    min-height: 0;
+    padding: 24px;
+    overflow: auto;
+    background: #827676;   
+    color: black;
+    font-family: cursive !important;
 
+}
+body {
+    margin: 0;
+    font-family:cursive;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: cursive !important;
+
+  }
+  
+/* .dic {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    background: white;
+    width: 104%;
+    height: 9%;
+    line-height:3;
+    cursor: pointer;
+} */
+
+.dic :hover {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    background: black;
+    width: 104%;
+    height: 9%;
+    line-height:3;
+    cursor: pointer;
+    color: white !important;
+    font-family: cursive !important;
+
+}
+a {
+    color: black !important;
+    text-decoration: none;
+    background-color: transparent;
+    font-weight: bold;
+    margin: auto;
+    margin-left: 20px;
+    font-family: cursive !important;
+    
+
+}
 .MainDiv h2{
     color: #01579b;
 }
@@ -32,4 +93,6 @@
 .btn  a{
     
     margin-right: 30px;
+    font-family:cursive;
+
 }

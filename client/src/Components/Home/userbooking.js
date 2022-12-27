@@ -28,7 +28,7 @@ const getdata = async () => {
     const findEmail2 = localStorage.getItem('user'); 
     console.log(findEmail2, 'email')
 
-    const res = await fetch(`/api/allbookbyemail/${findEmail2}`, {
+    const res = await fetch(`https://13k.up.railway.app/api/allbookbyemail/${findEmail2}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"

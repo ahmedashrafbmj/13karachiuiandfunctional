@@ -26,7 +26,7 @@ const AdminOrderDetails=(props)=>{
 
     const getdata = async () => {
 
-        const res = await fetch(`/api/getbookuserid/${id}`, {
+        const res = await fetch(`https://13k.up.railway.app/api/getbookuserid/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"

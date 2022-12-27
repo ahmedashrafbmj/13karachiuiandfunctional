@@ -29,7 +29,7 @@ const addPost=()=>{
     else{
 
         const headers = { "Content-Type": "application/json" };
-        axios.post(`/api/allpostflat`,{
+        axios.post(`https://13k.up.railway.app/api/allpostflat`,{
             flat:categoryDetail.flat,
            
             userEmail: localStorage.getItem('user'),
@@ -88,7 +88,7 @@ useEffect(() => {
     
 
         const headers = { "Content-Type": "application/json" };
-        axios.patch(`/api/flatupdate/6349c7e9d21e304d9e00a547`,{
+        axios.patch(`https://13k.up.railway.app/api/flatupdate/6349c7e9d21e304d9e00a547`,{
     
             flat: categoryDetail.flat,
     

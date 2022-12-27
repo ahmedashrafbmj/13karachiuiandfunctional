@@ -33,7 +33,7 @@ const [roleau, setroleau] = useState ('');
 
         const fetchHotels = async () => {
             setLoading(true)
-            const res = await fetch(`/api/postbysubcategory/${qty}`);
+            const res = await fetch(`https://13k.up.railway.app/api/postbysubcategory/${qty}`);
 
             const data = await res.json();
             console.log(data);

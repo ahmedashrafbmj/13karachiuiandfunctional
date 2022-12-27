@@ -5,6 +5,7 @@ import axios from 'axios'
 import FileUploadScreen from '../screens/FileUploadScreen';
 import {getSingleFiles, getMultipleFiles} from '../data/api';
 import Sheader from '../Components/Main/sHeader'
+import { breakpoints } from '@mui/system';
 
 
 
@@ -20,10 +21,15 @@ const [category, setCategory] = useState([]);
 
 const [multiproducts, setMultiprod] = useState([]);
 const [exmultiproducts, exsetMultiprod] = useState([]);
+const [totalpcount, settotalpcount] = useState([0])
 
 const [subcategory, setsubCategory] = useState([]);
 const [singleFiles, setSingleFiles] = useState([]);
   const [multipleFiles, setMultipleFiles] = useState([]);
+
+  const [othertotal, setOtherTotal] = useState(0);
+
+  const [matchqty, setmatchqty] = useState(0);
 
   const [lastmultipleRecord, setlastmultipleRecord] = useState([]);
 
@@ -94,7 +100,7 @@ const uploadImage = async e =>{
 }   
 
 const fetchCategory = async () => {
-  const res = await fetch(`/api/allgetcategory`);
+  const res = await fetch(`https://13k.up.railway.app/api/allgetcategory`);
 
   const datacategory = await res.json();
   console.log(datacategory);
@@ -115,7 +121,7 @@ useEffect(() => {
 
     const fetchsubCategory = async () => {
 
-        const res = await fetch(`/api/getsubcategorybyname/${productDetail.productName}`);
+        const res = await fetch(`https://13k.up.railway.app/api/getsubcategorybyname/${productDetail.productName}`);
 
         const datasubcategory = await res.json();
         console.log(datasubcategory);
@@ -134,7 +140,7 @@ useEffect(() => {
     //  })
 
     const lastRecord = async () => {
-      const res = await fetch(`/api/lastmulti`);
+      const res = await fetch(`https://13k.up.railway.app/api/lastmulti`);
 
       const lastRecordMulti = await res.json();
       console.log(lastRecordMulti, 'lastmulti');
@@ -143,6 +149,35 @@ useEffect(() => {
    
   };
   
+
+
+  const totalPurchase =()=>{
+
+    // const sum = multiproducts.reduce((prev, current)=> prev + +current.value[2],0);
+        
+      // return prev += +current.value[2]
+        
+     
+      // }, 0);
+      
+      // let arr = [];
+      // arr.push([productDetail.otherQty])
+      // console.log(arr, 'arr')
+      // settotalpcount(arr)
+
+     
+      // console.log(totalpcount, ' p array')
+
+      // const sum = totalpcount.reduce((total, current)=> total + +current,0);
+      // console.log(sum, 'sum func')
+      // setOtherTotal(sum)
+      // console.log(othertotal, 'sum func state')
+
+      const sum = totalpcount.reduce((total, current)=> total + +current,0);
+      setOtherTotal(sum)
+      console.log(sum, 'sum func')
+
+}
 
 
 
@@ -179,7 +214,7 @@ const addPost=()=>{
    
         const headers = { "Content-Type": "application/json" };
         // const multi = multiproducts.map((prod)=>{
-        axios.post(`/api/postdata`, {
+        axios.post(`https://13k.up.railway.app/api/postdata`, {
           
           
 
@@ -296,6 +331,7 @@ useEffect(() => {
 
     routeto()
     getrole()
+ 
     
     }, []);
 
@@ -303,8 +339,17 @@ useEffect(() => {
  
 
     const addMultiProducts=()=>{
-
-   
+      
+      // totalPurchase()
+      // if (productDetail.productQty  > othertotal ||  othertotal < productDetail.productQty ){  
+      //   console.log(productDetail.productQty, 'qty')
+      //     alert("qty limit")
+      
+      // }
+      //   else{
+          
+      productDetail.productQty <= othertotal ? alert('maximum qty')
+:
       setMultiprod([... multiproducts, {
 
         id: multiproducts.length,
@@ -312,17 +357,32 @@ useEffect(() => {
 
       }])
    
- 
+      settotalpcount(current => [...current, productDetail.otherQty]);
+     
+      // arr.push([...productDetail.otherQty])
+      // settotalpcount(arr)
+      // console.log(arr, 'arr other')
+    
+
+      // const sum = (multiproducts.reduce((prev, {current})=> prev + parseInt(current.value[2]),0));
+      // console.log(sum, 'sum other')
+
 
     }
+    
+    // totalPurchase()
 
+
+    
+
+   
+  
+
+    console.log(productDetail.productQty, 'qty')
     console.log(multiproducts, 'multiprod')
+    console.log(totalpcount, 'pcount other state')
+    // console.log(othertotal, 'other total')
     // console.log(lastmultipleRecord[0].files, 'checklast')
-
-
-
-
-
 
 
 
@@ -336,18 +396,13 @@ return(
 
     }
 
-<br />
-  <br />
-  <br />
-  <br />
-  <br />
 
 
 <div class="container">
   <div class="row justify-content-md-center">
 
 
-    <p class="h1">Add Products</p>
+    <h1 class="h1">Add Products</h1>
   
     </div>
     </div>
@@ -417,23 +472,9 @@ return(
       <input type="text"  class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productQty: e.target.value })} } />
     </div>
   </div>
-
   <div class="form-row">
-    <div class="form-group col-md-3">
 
-    <label for="inputColor">Color</label>
-      <select id="inputColor" class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productColor: e.target.value })} }>
-        <option selected>Select Color</option>
-        <option>Red</option>
-        <option>Blue</option>
-        <option>Green</option>
-        <option>Black</option>
-        <option>Yellow</option>
-        <option>Other</option>
-      </select>
-
-    </div>
-    <div class="form-group col-md-3">
+  <div class="form-group col-md-3">
       <label for="inputState">Size</label>
       <select id="inputState" class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productSize: e.target.value })} }>
         <option selected>Select Size</option>
@@ -452,7 +493,23 @@ return(
       </select>
     </div>
 
+ 
     <div class="form-group col-md-3">
+
+    <label for="inputColor">Color</label>
+      <select id="inputColor" class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productColor: e.target.value })} }>
+        <option selected>Select Color</option>
+        <option>Red</option>
+        <option>Blue</option>
+        <option>Green</option>
+        <option>Black</option>
+        <option>Yellow</option>
+        <option>Other</option>
+      </select>
+
+    </div>
+    
+    <div class="form-group col-md-2">
       <label for="inputContact">Other Qty</label>
       <input type="text"  class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, otherQty: e.target.value })} } />
       
@@ -462,7 +519,8 @@ return(
     <br />
     
       <button type="button" class="btn btn-primary" onClick={()=>{addMultiProducts()}}>Add Multi Product</button>
-    
+     <br/>
+      <button type="button" class="btn btn-primary mt-3" onClick={()=>{totalPurchase()}}>Set Products</button>
 
     
     </div>
@@ -478,11 +536,17 @@ return(
 
 
 {multiproducts.map(item=>{
+
   return <li key={item.id}> {item.value[0]} <br /> 
   {item.value[1]} <br/ >{item.value[2]}</li>
+
 })
+
+
 }
 </ul>
+
+{`Other Total: ${othertotal}`}
       
     </div>
   
@@ -513,7 +577,8 @@ Single Image for Product Title
         <h3>Loading ... </h3>
       ): ( //else
 
-        <img src={image} width={{width: '20px'}} />
+        // <img src={image} style={{width:"100%",height:"100%"}} />?  "no file uploaded1111" :    "no file uploaded1111"
+        <img src={image} style={{width:"100%",height:"100%"}} />? <img src={image} style={{width:"100%",height:"100%"}} /> :    "no file uploaded1111"
       )
     }
 
@@ -545,7 +610,6 @@ Single Image for Product Title
 Multiple Image for Product Title
 </div>
 <div class="card-body">
-{/* <h5 class="card-title">Special title treatment</h5> */}
 <p class="card-text">
 
 
@@ -605,19 +669,17 @@ Multiple Image for Product Title
        <div className="container-fluid mt-5">
          <div className="row">
            <div className="col-6">
-             {/* <h4 className="text-success font-weight-bold">Single Files List</h4> */}
              <div className="row">
                 {singleFiles.map((file, index) => 
                   <div className="col-6">
                     <div className="card mb-2 border-0 p-0">
-                      <img src={`/${file.filePath}`} height="200" className="card-img-top img-responsive" alt="img"/>
+                      <img src={`/${file.filePath}`} style={{width:"100%",height:"100%"}} className="card-img-top img-responsive" alt="img"/>
                       </div>
                   </div>
                 )}
              </div>
            </div>
            <div className="col-6">
-             {/* <h4 className="text-success font-weight-bold">Multiple Files List</h4> */}
              {multipleFiles.map((element, index) =>
                 <div key={element._id}>
                     <h6 className="text-danger font-weight-bold">{element.title}</h6>
@@ -625,7 +687,7 @@ Multiple Image for Product Title
                       {element.files.map((file, index) =>
                         <div className="col-6">
                             <div className="card mb-2 border-0 p-0">
-                              <img src={`/${file.filePath}`} height="200" className="card-img-top img-responsive" alt="img"/>
+                              {/* <img src={`/${file.filePath}`}  style={{width:"100%",height:"100%"}} className="card-img-top img-responsive" alt="img"/> */}
                               </div>
                           </div>
                        )}

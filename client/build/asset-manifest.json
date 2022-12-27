@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ba5af41c.css",
+    "main.js": "/static/js/main.0803795f.js",
+    "static/media/banner2.jpg": "/static/media/banner2.35f22171aedeccfbd49e.jpg",
+    "static/media/banner1.jpg": "/static/media/banner1.98a96839075fce566100.jpg",
+    "static/media/loading.gif": "/static/media/loading.dbb22bcf8555073ea29a.gif",
+    "static/media/shopping-cart.png": "/static/media/shopping-cart.96c73cb49987ccdf1154.png",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.ba5af41c.css",
+    "static/js/main.0803795f.js"
+  ]
+}

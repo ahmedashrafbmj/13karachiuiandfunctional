@@ -37,7 +37,7 @@ const UserRegister=(props)=>{
                 else{
  
             const headers = { "Content-Type": "application/json" };
-            axios.post('/api/signup',{
+            axios.post('https://13k.up.railway.app/api/signup',{
                 email:register.email,
                 password:register.password,
                 role: "User",

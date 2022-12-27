@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { Navbar, Nav } from 'react-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap'
 import {useHistory} from "react-router-dom";
 import cartpic from '../images/shopping-cart.png'
 import { useSelector } from 'react-redux';
@@ -42,7 +42,7 @@ const logout=()=>{
     useEffect(() => {
 
         const fetchProducts = async () => {
-            const res = await fetch('/api/allpostdata');
+            const res = await fetch('https://13k.up.railway.app/api/allpostdata');
             const data = await res.json();
             console.log(data, "data");
             setProducts(data);
@@ -66,6 +66,7 @@ const logout=()=>{
         matches = products.filter(user => {
         const regex = new RegExp(`${text}`, "gi");
         return user.productTitle.match(regex)
+   
         })
      
     }
@@ -122,6 +123,7 @@ return(
 <br />
 <br />
 <br />
+
     
     <div className='container'>
 
@@ -135,10 +137,23 @@ return(
 
 
     {suggestions && suggestions.map((suggestion, i)=>
-        <div key={i} className=" suggestion col-mid-12 justify-content-md-center" onClick={()=> onSuggestHandler(suggestion.productTitle)}>{suggestion.productTitle}
-       
+
+
+            <div key={i} className=" suggestion col-mid-12 justify-content-md-center" onClick={()=> onSuggestHandler(suggestion.productTitle)}>
+  
+            {suggestion.productTitle}   
+            <Link to={`Details/${suggestion._id}`}> 
+            <img src= {suggestion.imageURL} ></img> 
+            </Link>
+        <br />
+
+      
+        {suggestion.productPrice}
+    
         </div>
-    )}
+
+        
+    ) }
 <br />
 {/* 
 <a class="btn btn-outline-primary" href="#" role="button">Search</a> */}

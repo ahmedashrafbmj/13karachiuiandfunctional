@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCart,
@@ -11,9 +11,59 @@ import {
 import { Link } from "react-router-dom";
 
 const Cart = () => {
+  const [psizes, setpSize] = useState([0]);
+  const [pcolors, setpcolor] = useState([0]);
+  const [arrdata, setarrData] = useState([0]);
+  const [productDetail, setproductDetail] = useState({
+  
+
+    productSize: "",
+
+  })
+
+
   const cart = useSelector((state) => state.cart);
 
   const dispatch = useDispatch();
+
+
+      const fetchDetails = async (id) => {
+
+        const res = await fetch(`https://13k.up.railway.app/api/getuser/${id}`);
+        const data = await res.json();
+        console.log(data);
+        setarrData(data);
+
+
+        let uniqueArr = [... new Set(arrdata.multiProd.map(data => data.productSize))]
+        console.log(uniqueArr, 'size')
+        
+        setpSize(uniqueArr)
+        console.log(psizes, 'state size')
+    
+        // let uniqueArr2 = [(arrdata.multiProd.map(data2 => data2.productColor))]
+    
+        console.log(productDetail.productSize, 'select')
+
+
+    };
+
+
+const checkColor=(()=>{
+
+    let arr = []
+    let fetchcolor = arrdata.multiProd.map((color)=>{
+        if (color.productSize === productDetail.productSize){
+
+            arr.push([color.productColor])
+        }
+        setpcolor(arr)
+        console.log(arr, 'color')
+    })
+
+})
+
+
 
   useEffect(() => {
     dispatch(getTotals());
@@ -30,6 +80,8 @@ const Cart = () => {
   };
   const handleClearCart = () => {
     dispatch(clearCart());
+
+
   };
   return (
     <div className="cart-container">
@@ -77,11 +129,67 @@ const Cart = () => {
                       <p>{cartItem.productWeight} KG</p>
                       <p>{cartItem.productSize} </p>
                       <p>{cartItem.productColor}</p>
+                    
+
+
+                      
+
+
+<select class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productSize: e.target.value })} } onClick={() => fetchDetails(cartItem._id)}>
+
+<option selected >Choose Size</option>
+<h5>Size:</h5>
+
+{psizes.map((category) => (
+
+
+<option>{category}</option>
+
+
+
+
+))}
+
+</select>
+
+
+
+
+
+<hr />    
+
+
+
+
+  <select class="form-control"  onClick={() => checkColor()}>
+
+<option selected >Choose Color</option>
+<h5>Color:</h5>
+
+{pcolors.map((category) => (
+
+
+<option>{category}</option>
+
+
+
+
+))}
+
+</select>
+
+
+
+                     
                       <button onClick={() => handleRemoveFromCart(cartItem)}>
                         Remove
                       </button>
                     </div>
                   </div>
+
+      
+
+
                   <div className="cart-product-price">Rs.{cartItem.productPrice}/-</div>
                   <div className="cart-product-quantity">
                     <button onClick={() => handleDecreaseCart(cartItem)}>

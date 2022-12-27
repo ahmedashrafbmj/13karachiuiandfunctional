@@ -30,7 +30,7 @@ const addPost=()=>{
     else{
 
         const headers = { "Content-Type": "application/json" };
-        axios.post(`/api/allpostmarket`,{
+        axios.post(`https://13k.up.railway.app/api/allpostmarket`,{
             marketName:area.marketName,
             areaName:area.areaName,
             // imageURL:categoryDetail.imageURL,
@@ -83,7 +83,7 @@ const getrole=()=>{
   useEffect(() => {
 
     const fetcharea = async () => {
-        const res = await fetch(`/api/allgetarea`);
+        const res = await fetch(`https://13k.up.railway.app/api/allgetarea`);
 
         const dataarea = await res.json();
         console.log(dataarea);

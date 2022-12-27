@@ -69,7 +69,7 @@ const addPost=()=>{
         const getdate = new Date().toLocaleString()
 
         const headers = { "Content-Type": "application/json" };
-        axios.post(`/api/bookingpostdata`,{
+        axios.post(`https://13k.up.railway.app/api/bookingpostdata`,{
 
           
           
@@ -360,7 +360,7 @@ else{
 
 
 const fetchFlat = async () => {
-  const res = await fetch('/api/flatid/6349c7e9d21e304d9e00a547');
+  const res = await fetch('https://13k.up.railway.app/api/flatid/6349c7e9d21e304d9e00a547');
   const data = await res.json();
   console.log(data, "all flat");
   setHotel(data)
@@ -370,7 +370,7 @@ const fetchFlat = async () => {
 
 
 const fetchWeight = async () => {
-  const res = await fetch('/api/weightid/636522f618af3a1d34c3e90d');
+  const res = await fetch('https://13k.up.railway.app/api/weightid/636522f618af3a1d34c3e90d');
   const data = await res.json();
   console.log(data.upto500Gram, "all weight");
   setWeightApi(data)

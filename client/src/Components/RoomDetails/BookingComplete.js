@@ -33,7 +33,7 @@ const BookingComplete=(props)=>{
 
 
     //     const fetchDetails= async () => {
-    //         const res = await fetch(`/api/getbookuserid/${pkgid}`);
+    //         const res = await fetch(`https://13k.up.railway.app/api/getbookuserid/${pkgid}`);
     //         const data = await res.json();
     //         console.log(data);
     //         setbooking(data);

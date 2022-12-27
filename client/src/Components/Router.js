@@ -42,6 +42,7 @@ import Getshops from './Home/getShops';
 import GetshopsProducts from './Home/getshopsProducts';
 import Weightrate from './Welcome/weightrate';
 import AddCarousel from './AddCarousel';
+import ViewArea from './Welcome/viewArea';
 
 
 
@@ -66,6 +67,7 @@ const Router = (props) => {
         <Route path="/ShowGallery/:productName" component={Getcategory} />
         <Route path="/ShowGallerySub/:productName" component={Getcatesub} />        
         <Route path="/ShowSub/:qty" component={Getsubcategory} />
+
 
         <Route path="/ShowMarket/:areaName" component={Getmarket} />
         <Route path="/ShowShops/:marketname" component={Getshops} />
@@ -97,6 +99,7 @@ const Router = (props) => {
         <PrivateRoute path="/allUsers" component={AllUsers} />
         <PrivateRoute path="/viewcategory" component={ViewCategory} />
         <PrivateRoute path="/viewcarousel" component={ViewCarousel} />
+        <PrivateRoute path="/viewarea" component={ViewArea} />
         <PrivateRoute path="/editcategory/:id" component={EditCategory} />
         <PrivateRoute path="/editprofile/:id" component={EditProfile} />
         <PrivateRoute path="/edituprofile/:id" component={EdituProfile} />

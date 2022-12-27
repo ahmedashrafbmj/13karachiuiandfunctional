@@ -9,8 +9,11 @@ const ImageSlider = ({ slides }) => {
 
   useEffect(() => {
     fetchCarousel()
-    
+    next()
+
   }, []);
+
+
   
   const nextSlide = () => {
     setCurrent(current === length - 1 ? 0 : current + 1);
@@ -25,10 +28,21 @@ const ImageSlider = ({ slides }) => {
   }
 
 
+  const next=()=>{
+    setTimeout(() => {
+      console.log('next')
+      nextSlide()
+    }, 5000);
+
+    setTimeout(() => {
+      console.log('prev')
+      prevSlide()
+    }, 10000);
+  }
 
   const fetchCarousel = async () => {
 
-    const res = await fetch('/api/allgetcarousel');
+    const res = await fetch('https://13k.up.railway.app/api/allgetcarousel');
 
     const datacarousel = await res.json();
     
@@ -47,8 +61,9 @@ const ImageSlider = ({ slides }) => {
 
   return (
     <section className='slider'>
-      <FaArrowAltCircleLeft className='left-arrow' onClick={prevSlide} />
+      <FaArrowAltCircleLeft className='left-arrow'  onClick={prevSlide} />
       <FaArrowAltCircleRight className='right-arrow' onClick={nextSlide} />
+    
       {SliderData.map((slide, index) => {
         return (
           <div

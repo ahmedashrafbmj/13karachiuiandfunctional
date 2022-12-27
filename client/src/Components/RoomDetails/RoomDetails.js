@@ -1,3 +1,4 @@
+
 import React, {useState, useEffect} from 'react'
 import { Button, Card, Container, Row, Col } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
@@ -8,8 +9,6 @@ import { useHistory } from 'react-router-dom';
 import {Table} from 'react-bootstrap'
 import { addToCart } from "../../store/cartSlice";
 import { useDispatch } from 'react-redux';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import 'react-toastify/dist/ReactToastify.css';
 const PORT = process.env.PORT || 9000;
 
 
@@ -38,36 +37,56 @@ const RoomDetails=(props)=>{
     const [psizes, setpSize] = useState([0]);
     const [pcolors, setpcolor] = useState([0]);
 
+    const [productDetail, setproductDetail] = useState({
+  
+
+        productSize: "",
+
+      })
+
     const checkitem=()=>{
         let uniqueArr = [... new Set(arrdata.multiProd.map(data => data.productSize))]
         console.log(uniqueArr, 'size')
         
         setpSize(uniqueArr)
-    
-        let uniqueArr2 = [... new Set (arrdata.multiProd.map(data2 => data2.productColor))]
-        console.log(uniqueArr2, 'color')
-        setpcolor(uniqueArr2)
+        console.log(psizes, 'state size')
 
+        // let uniqueArr2 = [(arrdata.multiProd.map(data2 => data2.productColor))]
+
+        console.log(productDetail.productSize, 'select')
+   
 
     }
 
+
+    const checkColor=(()=>{
+
+        let arr = []
+        let fetchcolor = arrdata.multiProd.map((color)=>{
+            if (color.productSize === productDetail.productSize){
+
+                arr.push([color.productColor])
+            }
+            setpcolor(arr)
+            console.log(arr, 'color')
+        })
+
+    })
 
 
 
 
     const fetchDetails = async () => {
-        const res = await fetch(`/api/getuser/${id}`);
+        const res = await fetch(`https://13k.up.railway.app/api/getuser/${id}`);
         const data = await res.json();
         console.log(data);
         setHotel(data);
         setarrData(data);
 
-
-
     };
    
     const fetchDelivered = async () => {
-        const res = await fetch(`/api/delivered`);
+        const res = await fetch(`https://13k.up.railway.app/api/delivered`);
         const dataDelivered = await res.json();
         console.log(dataDelivered, 'fetch Delivered');
         setDelivered(dataDelivered);
@@ -76,8 +95,8 @@ const RoomDetails=(props)=>{
 
     useEffect(() => {
         
-        fetchDetails()
-        fetchDelivered()
+    fetchDetails()
+    fetchDelivered()
 
     }, []);
 
@@ -190,7 +209,7 @@ console.log(hotel.multiProd, 'iddetail')
 <div class="container">
   <div class="row">
 
-  <div class="col-4" onMouseMove={() => func()} onMouseMove={()=>checkitem()}>
+  <div class="col-4" onMouseMove={() => func()}>
   
   <img src={hotel.imageURL}></img>
   
@@ -263,21 +282,22 @@ return(
     <div class="form-group col-md-6">
       {/* <label for="inputState">Select Category</label> */}
 
-      {/* <select class="form-control" onClick={() => checkitem()}>
+<select class="form-control" onChange={ (e) =>{setproductDetail({...productDetail, productSize: e.target.value })} } onClick={() => checkitem()}>
 
-      <option selected>Choose Size</option> */}
+<option selected >Choose Size</option>
 <h5>Size:</h5>
 
 {psizes.map((category) => (
 
 
-// <option>{category}</option>
+<option>{category}</option>
 
-<Button className='margin-left'> {category}</Button>
+
+
 
 ))}
 
-{/* </select> */}
+</select>
 
 
 
@@ -291,12 +311,23 @@ return(
     <div class="form-group col-md-6">
       {/* <label for="inputState">Select Category</label> */}
 
+      <select class="form-control"  onClick={() => checkColor()}>
+
+<option selected >Choose Color</option>
 <h5>Color:</h5>
+
 {pcolors.map((category) => (
 
-<Button className='margin-left'>{category}</Button>
+
+<option>{category}</option>
+
+
+
 
 ))}
+
+</select>
+
 
 
 
@@ -308,13 +339,33 @@ return(
 
 
     <br />
-    
-    <b> <h1><del>Rs.{hotel.productwasPrice}/-</del></h1></b><br />
 
-    <b> <h1>Rs.{hotel.productPrice}/-</h1></b><br />
 
-  
-    <Button  variant="primary" onClick={() => handleAdd(hotel)}>Add to Cart</Button> 
+    {
+
+(hotel.productwasPrice === null)
+
+
+? (hotel.productwasPrice === "" || `Rs.${hotel.productPrice}/-`) 
+
+
+:
+
+
+
+<h4><b>Rs.{hotel.productPrice}/- &nbsp; <del>Rs.{hotel.productwasPrice}/-</del></b></h4>
+
+
+}
+
+    {/* <b> <h1><del>Rs.{hotel.productwasPrice}/-</del></h1></b><br />
+
+    <b> <h1>Rs.{hotel.productPrice}/-</h1></b><br /> */}
+
+  <br />
+    <Button  variant="primary" onClick={() => handleAdd(hotel)}>Add to Cart</Button>
+{/* 
+    <Button  variant="primary" onClick={() => checkColor()}> Check color</Button>  */}
 
 
     

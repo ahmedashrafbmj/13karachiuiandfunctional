@@ -21,7 +21,7 @@ const AllOrderUsers=(props)=>{
 const getdata = async () => {
 
 
-    const res = await fetch(`/api/allpostbook`, {
+    const res = await fetch(`https://13k.up.railway.app/api/allpostbook`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json"
@@ -82,7 +82,7 @@ const updatePost=(id)=>{
     
 
     const headers = { "Content-Type": "application/json" };
-    axios.patch(`/api/ordersupdate/${id}`,{
+    axios.patch(`https://13k.up.railway.app/api/ordersupdate/${id}`,{
 
         paymentstatus: productDetail.paymentstatus,
 
@@ -109,7 +109,7 @@ console.log('error',err)
 
 const deletedata = async (id) => {
 
-    const res2 = await fetch(`/api/deleteorders/${id}`, {
+    const res2 = await fetch(`https://13k.up.railway.app/api/deleteorders/${id}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

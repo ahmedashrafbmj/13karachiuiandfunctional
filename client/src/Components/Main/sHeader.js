@@ -70,6 +70,7 @@ return(
 {/* <a class="btn btn-primary" href="#" role="button"> Admin Orders</a> */}
 
 <a class="btn btn-primary" href="/area" role="button"> Add Area</a>
+<a class="btn btn-primary" href="/viewarea" role="button"> View Area</a>
 <a class="btn btn-primary" href="/market" role="button"> Add Market</a>
 
 <a class="btn btn-primary" href="/weightrate" role="button"> Add Weight Rate</a>

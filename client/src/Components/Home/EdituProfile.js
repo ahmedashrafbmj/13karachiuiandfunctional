@@ -29,7 +29,7 @@ const { id } = useParams("");
 
     const getdata = async () => {
 
-        const res = await fetch(`/api/profileid/${id}`, {
+        const res = await fetch(`https://13k.up.railway.app/api/profileid/${id}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json"
@@ -112,7 +112,7 @@ const updatePost=()=>{
     
 
         const headers = { "Content-Type": "application/json" };
-        axios.patch(`/api/profileupdate/${id}`,{
+        axios.patch(`https://13k.up.railway.app/api/profileupdate/${id}`,{
             cnic:productDetail.cnic,
             contact:productDetail.contact,
             address:productDetail.address,

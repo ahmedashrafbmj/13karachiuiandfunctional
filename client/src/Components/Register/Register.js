@@ -10,11 +10,10 @@ const Register=(props)=>{
     name:"",
     city:"",
     area: "",
-    marketname: "Hydri",
+    marketname: "",
     cnic: "",
     email: "",
-    password: "",
-    img:""
+    password: ""
 
     });
     const history = useHistory()
@@ -76,7 +75,7 @@ const uploadImage = async e =>{
                 else{
  
             const headers = { "Content-Type": "application/json" };
-            axios.post(`/api/signup`,{
+            axios.post(`https://13k.up.railway.app/api/signup`,{
                 email:register.email,
                 password:register.password,
                 role: "Admin",
@@ -101,7 +100,7 @@ const uploadImage = async e =>{
 
     .catch((err)=>{
         
-    alert(err.response.data.message)
+    alert("User Already Exist")
     console.log('error',err)
     
     })
@@ -138,7 +137,7 @@ const uploadImage = async e =>{
          useEffect(() => {
 
             const fetcharea = async () => {
-                const res = await fetch(`/api/allgetarea`);
+                const res = await fetch(`https://13k.up.railway.app/api/allgetarea`);
         
                 const dataarea = await res.json();
                 console.log(dataarea);
@@ -155,7 +154,7 @@ const uploadImage = async e =>{
      
 
             const fetchareaName = async () => {
-                const res = await fetch(`/api/getareaname/${register.area}`);
+                const res = await fetch(`https://13k.up.railway.app/api/getareaname/${register.area}`);
         
                 const dataareaname = await res.json();
                 console.log(dataareaname);

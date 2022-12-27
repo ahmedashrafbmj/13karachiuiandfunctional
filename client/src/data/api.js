@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiUrl = '/api/';
+const apiUrl = 'https://13k.up.railway.app/api/';
 
 export const singleFileUpload = async (data, options) => {
     try {
